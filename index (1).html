@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AHPC – Índices Digitales · Archivo Histórico de la Provincia de Córdoba</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #C9A84C;
+    --gold-light: #E8D49A;
+    --gold-dark: #8B6914;
+    --parchment: #F5F0E8;
+    --parchment-dark: #EDE5D0;
+    --ink: #1A1510;
+    --ink-mid: #3D3020;
+    --ink-light: #6B5A3E;
+    --sepia: #8B7355;
+    --red-deep: #7A1F1F;
+    --blue-hist: #1A3A5C;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--parchment);
+    color: var(--ink);
+    font-family: 'Crimson Pro', Georgia, serif;
+    font-size: 17px;
+    line-height: 1.7;
+  }
+
+  /* HEADER */
+  header {
+    background: #3D2B1A;
+    padding: 0;
+    position: relative;
+    overflow: hidden;
+  }
+  header::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 60px,
+      rgba(201,168,76,0.05) 60px,
+      rgba(201,168,76,0.05) 61px
+    );
+  }
+  .header-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 3.5rem 2rem 3rem;
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 2rem;
+    align-items: end;
+  }
+  .header-eyebrow {
+    font-family: 'Crimson Pro', serif;
+    font-size: 12px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.75rem;
+    font-weight: 400;
+  }
+  h1 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 600;
+    color: #fff;
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+  }
+  h1 em {
+    font-style: italic;
+    color: var(--gold-light);
+  }
+  .header-sub {
+    color: rgba(255,255,255,0.55);
+    font-size: 15px;
+    margin-top: 1rem;
+    font-weight: 300;
+    letter-spacing: 0.03em;
+  }
+  .header-stats {
+    text-align: right;
+  }
+  .total-count {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: var(--gold);
+    display: block;
+    line-height: 1;
+  }
+  .total-label {
+    font-size: 12px;
+    color: rgba(255,255,255,0.45);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    margin-top: 0.3rem;
+  }
+  .header-rule {
+    border: none;
+    border-top: 1px solid rgba(201,168,76,0.3);
+    margin: 0;
+  }
+  .header-bottom {
+    background: rgba(0,0,0,0.3);
+    padding: 0.65rem 0;
+  }
+  .header-bottom-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    gap: 2.5rem;
+    font-size: 12.5px;
+    color: rgba(255,255,255,0.4);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .header-bottom-inner span { color: var(--gold); font-weight: 500; }
+
+  /* INTRO */
+  .intro {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 3rem 2rem 1.5rem;
+    display: grid;
+    grid-template-columns: 1fr 340px;
+    gap: 3rem;
+    align-items: start;
+  }
+  .intro-text p {
+    color: var(--ink-light);
+    font-size: 16.5px;
+    line-height: 1.8;
+    margin-bottom: 1rem;
+    font-weight: 300;
+  }
+  .intro-text p strong {
+    color: var(--ink-mid);
+    font-weight: 500;
+  }
+  .intro-box {
+    background: #3D2B1A;
+    color: rgba(255,255,255,0.75);
+    padding: 1.5rem 1.75rem;
+    font-size: 14.5px;
+    line-height: 1.8;
+    border-left: 3px solid var(--gold);
+  }
+  .intro-box-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--gold);
+    margin-bottom: 0.75rem;
+    font-weight: 400;
+  }
+
+  /* SECTION HEADERS */
+  .section-header {
+    max-width: 1100px;
+    margin: 2.5rem auto 0;
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--sepia);
+    font-weight: 400;
+    white-space: nowrap;
+  }
+  .section-line {
+    flex: 1;
+    height: 1px;
+    background: var(--parchment-dark);
+  }
+
+  /* GRID */
+  .grid {
+    max-width: 1100px;
+    margin: 1.25rem auto 0;
+    padding: 0 2rem 2rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1px;
+    background: var(--parchment-dark);
+    border: 1px solid var(--parchment-dark);
+  }
+  .card {
+    background: #fff;
+    padding: 1.5rem 1.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    text-decoration: none;
+    color: inherit;
+    transition: background 0.15s;
+    position: relative;
+  }
+  .card:hover { background: #FDFAF4; }
+  .card:hover .card-arrow { opacity: 1; transform: translateX(0); }
+  .card-fondo {
+    font-size: 10.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--sepia);
+    margin-bottom: 0.4rem;
+    font-weight: 400;
+  }
+  .card-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--ink);
+    line-height: 1.3;
+    margin-bottom: 0.2rem;
+  }
+  .card-period {
+    font-size: 13px;
+    color: var(--sepia);
+    letter-spacing: 0.05em;
+    margin-bottom: 1rem;
+  }
+  .card-stats {
+    display: flex;
+    gap: 1.25rem;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+  }
+  .stat {
+    display: flex;
+    flex-direction: column;
+  }
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--ink-mid);
+    line-height: 1;
+  }
+  .stat-label {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--sepia);
+    margin-top: 2px;
+  }
+  .card-desc {
+    font-size: 13.5px;
+    color: var(--ink-light);
+    line-height: 1.65;
+    font-weight: 300;
+    flex: 1;
+  }
+  .card-footer {
+    margin-top: 1rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid var(--parchment-dark);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .card-platform {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--sepia);
+    opacity: 0.6;
+  }
+  .card-arrow {
+    font-size: 13px;
+    color: var(--gold-dark);
+    opacity: 0;
+    transform: translateX(-4px);
+    transition: all 0.15s;
+    font-family: monospace;
+  }
+
+  /* COLOR ACCENTS */
+  .card[data-type="crimen"] { border-top: 2px solid var(--red-deep); }
+  .card[data-type="civil"] { border-top: 2px solid var(--blue-hist); }
+  .card[data-type="notarial"] { border-top: 2px solid var(--gold-dark); }
+  .card[data-type="escribania"] { border-top: 2px solid #3D5A2A; }
+
+  .tag {
+    display: inline-block;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding: 2px 8px;
+    margin-bottom: 0.75rem;
+    font-weight: 400;
+  }
+  .tag-crimen { background: #FBF0EE; color: var(--red-deep); }
+  .tag-civil { background: #EEF2F8; color: var(--blue-hist); }
+  .tag-notarial { background: #FBF7EE; color: var(--gold-dark); }
+  .tag-escribania { background: #EEF5EE; color: #3D5A2A; }
+
+  /* FOOTER */
+  footer {
+    background: #3D2B1A;
+    color: rgba(255,255,255,0.4);
+    padding: 2.5rem 2rem;
+    margin-top: 3rem;
+    font-size: 13px;
+    line-height: 1.7;
+  }
+  .footer-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+  .footer-title {
+    font-family: 'Playfair Display', serif;
+    color: rgba(255,255,255,0.7);
+    font-size: 15px;
+    margin-bottom: 0.5rem;
+    font-weight: 400;
+  }
+  .footer-gold { color: var(--gold); }
+
+  @media (max-width: 700px) {
+    .header-inner { grid-template-columns: 1fr; }
+    .header-stats { text-align: left; }
+    .intro { grid-template-columns: 1fr; }
+    .footer-inner { grid-template-columns: 1fr; }
+    .grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div>
+      <p class="header-eyebrow">Archivo Histórico de la Provincia de Córdoba</p>
+      <h1>Índices <em>Digitales</em><br>del AHPC</h1>
+      <p class="header-sub">Portal de acceso a los índices onomásticos digitalizados · Poder Judicial · Registros Notariales</p>
+    </div>
+    <div class="header-stats">
+      <span class="total-count">+138.000</span>
+      <p class="total-label">Expedientes indexados</p>
+    </div>
+  </div>
+  <hr class="header-rule">
+  <div class="header-bottom">
+    <div class="header-bottom-inner">
+      <div>Período <span>1574 – 1934</span></div>
+      <div>Series <span>9</span></div>
+      <div>Fondos <span>3</span></div>
+      <div>Acceso <span>Libre y gratuito</span></div>
+    </div>
+  </div>
+</header>
+
+<div class="intro">
+  <div class="intro-text">
+    <p>Este portal reúne los <strong>índices onomásticos digitalizados</strong> del Archivo Histórico de la Provincia de Córdoba (AHPC). Cada aplicación permite buscar expedientes judiciales, escrituras notariales y actuaciones criminales de los siglos XVII al XX.</p>
+    <p>Los índices fueron originalmente publicados como planillas Excel por el AHPC. Este proyecto los convierte en <strong>aplicaciones web de consulta</strong>, facilitando el acceso a investigadores, genealogistas y usuarios del archivo.</p>
+  </div>
+  <div class="intro-box">
+    <p class="intro-box-title">Cómo usar este portal</p>
+    Cada tarjeta corresponde a una serie documental. Hacé clic para acceder a la aplicación de búsqueda. Podés buscar por nombre de las partes, tipo de causa y rango de años.
+  </div>
+</div>
+
+<!-- FONDO PODER JUDICIAL -->
+<div style="max-width:1100px;margin:2rem auto 0;padding:0 2rem;">
+  <div style="background:#3D2B1A;color:var(--gold-light);padding:0.6rem 1.25rem;font-size:11px;letter-spacing:0.2em;text-transform:uppercase;font-family:'Crimson Pro',serif;font-weight:400;">
+    Fondo: Poder Judicial de la Provincia de Córdoba
+  </div>
+</div>
+
+<div class="section-header" style="margin-top:1rem;">
+  <span class="section-title">Serie: Juzgados del Crimen</span>
+  <div class="section-line"></div>
+</div>
+
+<div class="grid">
+  <a class="card" data-type="crimen" href="https://web-production-206a6.up.railway.app" target="_blank">
+    <p class="card-fondo">Poder Judicial · Juzgados del Crimen</p>
+    <span class="tag tag-crimen">Crimen</span>
+    <p class="card-title">Crimen Capital<br>Ciudad y Campaña</p>
+    <p class="card-period">1664 – 1894</p>
+    <div class="card-stats">
+      <div class="stat"><span class="stat-num">7.688</span><span class="stat-label">Registros</span></div>
+      <div class="stat"><span class="stat-num">3.697</span><span class="stat-label">Causas</span></div>
+    </div>
+    <p class="card-desc">Expedientes criminales del período colonial y siglo XIX. La serie más antigua del fondo judicial.</p>
+    <div class="card-footer">
+      <span class="card-platform">Railway</span>
+      <span class="card-arrow">→</span>
+    </div>
+  </a>
+
+  <a class="card" data-type="crimen" href="https://crimen-capital-1-nominacion-cordoba-1890-a-1925-production.up.railway.app" target="_blank">
+    <p class="card-fondo">Poder Judicial · Juzgados del Crimen</p>
+    <span class="tag tag-crimen">Crimen</span>
+    <p class="card-title">Crimen Capital<br>1° Nominación</p>
+    <p class="card-period">1890 – 1925</p>
+    <div class="card-stats">
+      <div class="stat"><span class="stat-num">3.430</span><span class="stat-label">Expedientes</span></div>
+      <div class="stat"><span class="stat-num">22</span><span class="stat-label">Legajos</span></div>
+      <div class="stat"><span class="stat-num">1.705</span><span class="stat-label">Causas</span></div>
+    </div>
+    <p class="card-desc">Inventario correlativo de expedientes judiciales del Poder Judicial de Córdoba.</p>
+    <div class="card-footer">
+      <span class="card-platform">Railway</span>
+      <span class="card-arrow">→</span>
+    </div>
+  </a>
+</div>
+
+<div class="section-header">
+  <span class="section-title">Serie: Juzgados Civiles</span>
+  <div class="section-line"></div>
+</div>
+
+<div class="grid">
+  <a class="card" data-type="civil" href="https://serie-juzgado-civil-capital-1-nominacion.onrender.com" target="_blank">
+    <p class="card-fondo">Poder Judicial · Juzgados Civiles</p>
+    <span class="tag tag-civil">Civil</span>
+    <p class="card-title">Juzgado Civil Capital<br>1° Nominación</p>
+    <p class="card-period">1883 – 1925</p>
+    <div class="card-stats">
+      <div class="stat"><span class="stat-num">17.852</span><span class="stat-label">Expedientes</span></div>
+      <div class="stat"><span class="stat-num">1.259</span><span class="stat-label">Tipos de causa</span></div>
+    </div>
+    <p class="card-desc">Índice onomástico de partes de expedientes judiciales. Sucesiones, mensuras, protocolizaciones.</p>
+    <div class="card-footer">
+      <span class="card-platform">Render</span>
+      <span class="card-arrow">→</span>
+    </div>
+  </a>
+
+  <a class="card" data-type="civil" href="https://raphaelc22.pythonanywhere.com" target="_blank">
+    <p class="card-fondo">Poder Judicial · Juzgados Civiles</p>
+    <span class="tag tag-civil">Civil</span>
+    <p class="card-title">Juzgado Civil Capital<br>2° Nominación</p>
+    <p class="card-period">1866 – 1933</p>
+    <div class="card-stats">
+      <div class="stat"><span class="stat-num">22.126</span><span class="stat-label">Expedientes</span></div>
+      <div class="stat"><span class="stat-num">423</span><span class="stat-label">Tipos de causa</span></div>
+    </div>
+    <p class="card-desc">Serie con la mayor cobertura temporal de los juzgados civiles del período estudiado.</p>
+    <div class="card-footer">
+      <span class="card-platform">PythonAnywhere</span>
+      <span class="card-arrow">→</span>
+    </div>
+  </a>
+
+  <a class="card" data-type="civil" href="https://juzgado-civil-capital-3-nominacion-ahpc-1.onrender.com" target="_blank">
+    <p class="card-fondo">Poder Judicial · Juzgados Civiles</p>
+    <span class="tag tag-civil">Civil</span>
+    <p class="card-title">Juzgado Civil Capital<br>3° Nominación</p>
+    <p class="card-period">1888 – 1925</p>
+    <div class="card-stats">
+      <div class="stat"><span class="stat-num">16.230</span><span class="stat-label">Expedientes</span></div>
+      <div class="stat"><span class="stat-num">2.011</span><span class="stat-label">Tipos de causa</span></div>
+    </div>
+    <p class="card-desc">Protocolizaciones, sumarias y cobros de pesos entre los más frecuentes de esta serie.</p>
+    <div class="card-footer">
+      <span class="card-platform">Render</span>
+      <span class="card-arrow">→</span>
+    </div>
+  </a>
+
+  <a class="card" data-type="civil" href="https://erca.pythonanywhere.com" target="_blank">
+    <p class="card-fondo">Poder Judicial · Juzgados Civiles</p>
+    <span class="tag tag-civil">Civil</span>
+    <p class="card-title">Juzgado Civil Capital<br>4° Nominación</p>
+    <p class="card-period">1889 – 1934</p>
+    <div class="card-stats">
+      <div class="stat"><span class="stat-num">12.649</span><span class="stat-label">Expedientes</span></div>
+      <div class="stat"><span class="stat-num">1.093</span><span class="stat-label">Tipos de causa</span></div>
+    </div>
+    <p class="card-desc">Declaratorias de herederos, sumarias y protocolizaciones predominan en esta serie.</p>
+    <div class="card-footer">
+      <span class="card-platform">PythonAnywhere</span>
+      <span class="card-arrow">→</span>
+    </div>
+  </a>
+
+  <a class="card" data-type="civil" href="https://juzgado-civil-capital-5-nominacion.onrender.com" target="_blank">
+    <p class="card-fondo">Poder Judicial · Juzgados Civiles</p>
+    <span class="tag tag-civil">Civil</span>
+    <p class="card-title">Juzgado Civil Capital<br>5° Nominación</p>
+    <p class="card-period">1912 – 1929</p>
+    <div class="card-stats">
+      <div class="stat"><span class="stat-num">9.028</span><span class="stat-label">Expedientes</span></div>
+      <div class="stat"><span class="stat-num">1.240</span><span class="stat-label">Tipos de causa</span></div>
+    </div>
+    <p class="card-desc">Sumarias, sucesiones y declaraciones de herederos del período 1912–1929.</p>
+    <div class="card-footer">
+      <span class="card-platform">Render</span>
+      <span class="card-arrow">→</span>
+    </div>
+  </a>
+</div>
+
+<div class="section-header">
+  <span class="section-title">Serie: Escribanías Judiciales</span>
+  <div class="section-line"></div>
+</div>
+
+<div class="grid">
+  <a class="card" data-type="escribania" href="https://escribanias-judiciales-1-4-1574-1882.onrender.com" target="_blank">
+    <p class="card-fondo">Poder Judicial · Escribanías Judiciales</p>
+    <span class="tag tag-escribania">Escribanías</span>
+    <p class="card-title">Escribanías Judiciales<br>N° 1, 2, 3 y 4</p>
+    <p class="card-period">1574 – 1882</p>
+    <div class="card-stats">
+      <div class="stat"><span class="stat-num">1574</span><span class="stat-label">Año inicial</span></div>
+      <div class="stat"><span class="stat-num">1882</span><span class="stat-label">Año final</span></div>
+    </div>
+    <p class="card-desc">La serie más antigua del portal. Índice de expedientes judiciales desde el período colonial.</p>
+    <div class="card-footer">
+      <span class="card-platform">Render</span>
+      <span class="card-arrow">→</span>
+    </div>
+  </a>
+</div>
+
+<!-- FONDO NOTARIALES -->
+<div style="max-width:1100px;margin:3rem auto 0;padding:0 2rem;">
+  <div style="background:#5A3E1B;color:var(--gold-light);padding:0.6rem 1.25rem;font-size:11px;letter-spacing:0.2em;text-transform:uppercase;font-family:'Crimson Pro',serif;font-weight:400;">
+    Fondo: Escribanos y Registros Notariales de la Provincia de Córdoba
+  </div>
+</div>
+
+<div class="section-header" style="margin-top:1rem;">
+  <span class="section-title">Serie: Registros Notariales</span>
+  <div class="section-line"></div>
+</div>
+
+<div class="grid">
+  <a class="card" data-type="notarial" href="https://registro-notarial-ahpc-1.onrender.com" target="_blank">
+    <p class="card-fondo">Escribanos y Registros Notariales</p>
+    <span class="tag tag-notarial">Notarial</span>
+    <p class="card-title">Registro Notarial N° 1</p>
+    <p class="card-period">1775 – 1925</p>
+    <div class="card-stats">
+      <div class="stat"><span class="stat-num">37.498</span><span class="stat-label">Registros</span></div>
+      <div class="stat"><span class="stat-num">205</span><span class="stat-label">Escribanos</span></div>
+      <div class="stat"><span class="stat-num">150</span><span class="stat-label">Años</span></div>
+    </div>
+    <p class="card-desc">150 años de escrituras públicas. Fundamental para investigación histórica, genealógica y jurídica.</p>
+    <div class="card-footer">
+      <span class="card-platform">Render</span>
+      <span class="card-arrow">→</span>
+    </div>
+  </a>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div>
+      <p class="footer-title">Sobre este portal</p>
+      <p>Proyecto de digitalización y acceso web a los índices del Archivo Histórico de la Provincia de Córdoba. Los datos originales fueron publicados por el AHPC en formato Excel y convertidos en aplicaciones de consulta.</p>
+    </div>
+    <div>
+      <p class="footer-title">Archivo Histórico de la Provincia de Córdoba</p>
+      <p>Los documentos originales se encuentran en el AHPC. Este portal es un proyecto de acceso libre, sin fines de lucro, destinado a investigadores, genealogistas y público en general.</p>
+      <p style="margin-top: 0.75rem;" class="footer-gold">Acceso libre · Sin registro · Sin costo</p>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
