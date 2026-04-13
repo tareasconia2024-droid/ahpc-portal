@@ -3,21 +3,21 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AHPC – Índices Digitales · Archivo Histórico de la Provincia de Córdoba</title>
+<title>AHPC – Índices Digitales de los Fondos Documentales del Archivo Histórico Provincial de Córdoba</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   :root {
-    --gold: #C9A84C;
-    --gold-light: #E8D49A;
-    --gold-dark: #8B6914;
-    --parchment: #F5F0E8;
-    --parchment-dark: #EDE5D0;
-    --ink: #1A1510;
-    --ink-mid: #3D3020;
-    --ink-light: #6B5A3E;
-    --sepia: #8B7355;
+    --gold: #7EB8D4;
+    --gold-light: #B8DCF0;
+    --gold-dark: #2A6E92;
+    --parchment: #F2F5F8;
+    --parchment-dark: #DDE4EC;
+    --ink: #0D1B2A;
+    --ink-mid: #1E3448;
+    --ink-light: #3D5A72;
+    --sepia: #5A7A94;
     --red-deep: #7A1F1F;
-    --blue-hist: #1A3A5C;
+    --blue-hist: #1A4A6C;
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body {
@@ -30,7 +30,7 @@
 
   /* HEADER */
   header {
-    background: #3D2B1A;
+    background: #142840;
     padding: 0;
     position: relative;
     overflow: hidden;
@@ -43,8 +43,8 @@
       90deg,
       transparent,
       transparent 60px,
-      rgba(201,168,76,0.05) 60px,
-      rgba(201,168,76,0.05) 61px
+      rgba(126,184,212,0.07) 60px,
+      rgba(126,184,212,0.07) 61px
     );
   }
   .header-inner {
@@ -106,7 +106,7 @@
   }
   .header-rule {
     border: none;
-    border-top: 1px solid rgba(201,168,76,0.3);
+    border-top: 1px solid rgba(126,184,212,0.25);
     margin: 0;
   }
   .header-bottom {
@@ -148,7 +148,7 @@
     font-weight: 500;
   }
   .intro-box {
-    background: #3D2B1A;
+    background: #142840;
     color: rgba(255,255,255,0.75);
     padding: 1.5rem 1.75rem;
     font-size: 14.5px;
@@ -211,7 +211,7 @@
     transition: background 0.15s;
     position: relative;
   }
-  .card:hover { background: #FDFAF4; }
+  .card:hover { background: #F4F8FB; }
   .card:hover .card-arrow { opacity: 1; transform: translateX(0); }
   .card-fondo {
     font-size: 10.5px;
@@ -292,7 +292,7 @@
 
   /* COLOR ACCENTS */
   .card[data-type="crimen"] { border-top: 2px solid var(--red-deep); }
-  .card[data-type="civil"] { border-top: 2px solid var(--blue-hist); }
+  .card[data-type="civil"] { border-top: 2px solid #1A4A6C; }
   .card[data-type="notarial"] { border-top: 2px solid var(--gold-dark); }
   .card[data-type="escribania"] { border-top: 2px solid #3D5A2A; }
 
@@ -307,12 +307,12 @@
   }
   .tag-crimen { background: #FBF0EE; color: var(--red-deep); }
   .tag-civil { background: #EEF2F8; color: var(--blue-hist); }
-  .tag-notarial { background: #FBF7EE; color: var(--gold-dark); }
+  .tag-notarial { background: #E8F4FB; color: #2A6E92; }
   .tag-escribania { background: #EEF5EE; color: #3D5A2A; }
 
   /* FOOTER */
   footer {
-    background: #3D2B1A;
+    background: #142840;
     color: rgba(255,255,255,0.4);
     padding: 2.5rem 2rem;
     margin-top: 3rem;
@@ -350,7 +350,7 @@
   <div class="header-inner">
     <div>
       <p class="header-eyebrow">Archivo Histórico de la Provincia de Córdoba</p>
-      <h1>Índices <em>Digitales</em><br>del AHPC</h1>
+      <h1>Índices <em>Digitales</em> de los Fondos Documentales<br>del Archivo Histórico Provincial de Córdoba</h1>
       <p class="header-sub">Portal de acceso a los índices onomásticos digitalizados · Poder Judicial · Registros Notariales</p>
     </div>
     <div class="header-stats">
@@ -382,7 +382,7 @@
 
 <!-- FONDO PODER JUDICIAL -->
 <div style="max-width:1100px;margin:2rem auto 0;padding:0 2rem;">
-  <div style="background:#3D2B1A;color:var(--gold-light);padding:0.6rem 1.25rem;font-size:11px;letter-spacing:0.2em;text-transform:uppercase;font-family:'Crimson Pro',serif;font-weight:400;">
+  <div style="background:#142840;color:var(--gold-light);padding:0.6rem 1.25rem;font-size:11px;letter-spacing:0.2em;text-transform:uppercase;font-family:'Crimson Pro',serif;font-weight:400;">
     Fondo: Poder Judicial de la Provincia de Córdoba
   </div>
 </div>
@@ -393,7 +393,7 @@
 </div>
 
 <div class="grid">
-  <a class="card" data-type="crimen" href="https://web-production-206a6.up.railway.app" target="_blank">
+  <a class="card" data-type="crimen" href="https://crimen-capital-cordoba-campana-ahpc.web.app" target="_blank">
     <p class="card-fondo">Poder Judicial · Juzgados del Crimen</p>
     <span class="tag tag-crimen">Crimen</span>
     <p class="card-title">Crimen Capital<br>Ciudad y Campaña</p>
@@ -404,12 +404,12 @@
     </div>
     <p class="card-desc">Expedientes criminales del período colonial y siglo XIX. La serie más antigua del fondo judicial.</p>
     <div class="card-footer">
-      <span class="card-platform">Railway</span>
+      <span class="card-platform">Firebase</span>
       <span class="card-arrow">→</span>
     </div>
   </a>
 
-  <a class="card" data-type="crimen" href="https://crimen-capital-1-nominacion-cordoba-1890-a-1925-production.up.railway.app" target="_blank">
+  <a class="card" data-type="crimen" href="https://crimen-capital-1-nomin-ahpc.web.app" target="_blank">
     <p class="card-fondo">Poder Judicial · Juzgados del Crimen</p>
     <span class="tag tag-crimen">Crimen</span>
     <p class="card-title">Crimen Capital<br>1° Nominación</p>
@@ -421,7 +421,7 @@
     </div>
     <p class="card-desc">Inventario correlativo de expedientes judiciales del Poder Judicial de Córdoba.</p>
     <div class="card-footer">
-      <span class="card-platform">Railway</span>
+      <span class="card-platform">Firebase</span>
       <span class="card-arrow">→</span>
     </div>
   </a>
@@ -449,7 +449,7 @@
     </div>
   </a>
 
-  <a class="card" data-type="civil" href="https://raphaelc22.pythonanywhere.com" target="_blank">
+  <a class="card" data-type="civil" href="https://juzgado-civil-2-nominacion-ahpc.web.app" target="_blank">
     <p class="card-fondo">Poder Judicial · Juzgados Civiles</p>
     <span class="tag tag-civil">Civil</span>
     <p class="card-title">Juzgado Civil Capital<br>2° Nominación</p>
@@ -460,12 +460,12 @@
     </div>
     <p class="card-desc">Serie con la mayor cobertura temporal de los juzgados civiles del período estudiado.</p>
     <div class="card-footer">
-      <span class="card-platform">PythonAnywhere</span>
+      <span class="card-platform">Firebase</span>
       <span class="card-arrow">→</span>
     </div>
   </a>
 
-  <a class="card" data-type="civil" href="https://juzgado-civil-capital-3-nominacion-ahpc-1.onrender.com" target="_blank">
+  <a class="card" data-type="civil" href="https://juzgado-civil-3-nominacion-ahpc.web.app" target="_blank">
     <p class="card-fondo">Poder Judicial · Juzgados Civiles</p>
     <span class="tag tag-civil">Civil</span>
     <p class="card-title">Juzgado Civil Capital<br>3° Nominación</p>
@@ -476,12 +476,12 @@
     </div>
     <p class="card-desc">Protocolizaciones, sumarias y cobros de pesos entre los más frecuentes de esta serie.</p>
     <div class="card-footer">
-      <span class="card-platform">Render</span>
+      <span class="card-platform">Firebase</span>
       <span class="card-arrow">→</span>
     </div>
   </a>
 
-  <a class="card" data-type="civil" href="https://erca.pythonanywhere.com" target="_blank">
+  <a class="card" data-type="civil" href="https://juzgado-civil-4-nominacion-ahpc.web.app" target="_blank">
     <p class="card-fondo">Poder Judicial · Juzgados Civiles</p>
     <span class="tag tag-civil">Civil</span>
     <p class="card-title">Juzgado Civil Capital<br>4° Nominación</p>
@@ -492,12 +492,12 @@
     </div>
     <p class="card-desc">Declaratorias de herederos, sumarias y protocolizaciones predominan en esta serie.</p>
     <div class="card-footer">
-      <span class="card-platform">PythonAnywhere</span>
+      <span class="card-platform">Firebase</span>
       <span class="card-arrow">→</span>
     </div>
   </a>
 
-  <a class="card" data-type="civil" href="https://juzgado-civil-capital-5-nominacion.onrender.com" target="_blank">
+  <a class="card" data-type="civil" href="https://juzgado-civil-5-nominacion-ahpc.web.app" target="_blank">
     <p class="card-fondo">Poder Judicial · Juzgados Civiles</p>
     <span class="tag tag-civil">Civil</span>
     <p class="card-title">Juzgado Civil Capital<br>5° Nominación</p>
@@ -508,7 +508,7 @@
     </div>
     <p class="card-desc">Sumarias, sucesiones y declaraciones de herederos del período 1912–1929.</p>
     <div class="card-footer">
-      <span class="card-platform">Render</span>
+      <span class="card-platform">Firebase</span>
       <span class="card-arrow">→</span>
     </div>
   </a>
@@ -539,7 +539,7 @@
 
 <!-- FONDO NOTARIALES -->
 <div style="max-width:1100px;margin:3rem auto 0;padding:0 2rem;">
-  <div style="background:#5A3E1B;color:var(--gold-light);padding:0.6rem 1.25rem;font-size:11px;letter-spacing:0.2em;text-transform:uppercase;font-family:'Crimson Pro',serif;font-weight:400;">
+  <div style="background:#1C3E5C;color:var(--gold-light);padding:0.6rem 1.25rem;font-size:11px;letter-spacing:0.2em;text-transform:uppercase;font-family:'Crimson Pro',serif;font-weight:400;">
     Fondo: Escribanos y Registros Notariales de la Provincia de Córdoba
   </div>
 </div>
